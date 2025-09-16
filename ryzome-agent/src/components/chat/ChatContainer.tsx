@@ -7,9 +7,8 @@ import { MessageInput } from './MessageInput';
 import { ConversationCard } from './ConversationCard';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Bot, MessageCircle, Plus, ArrowLeft, Send } from 'lucide-react';
+import { MessageCircle, ArrowLeft, Send } from 'lucide-react';
 import Image from 'next/image';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 
@@ -82,7 +81,12 @@ export function ChatContainer() {
         const data = await response.json();
         
         // Convert messages to our format
-        const formattedMessages: Message[] = data.messages.map((msg: any) => ({
+        const formattedMessages: Message[] = data.messages.map((msg: {
+          id: string;
+          content: string;
+          role: string;
+          created_at: string;
+        }) => ({
           id: msg.id,
           content: msg.content,
           role: msg.role,
@@ -98,13 +102,6 @@ export function ChatContainer() {
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const startNewConversation = () => {
-    setMessages([]);
-    setConversationId(null);
-    setStreamingMessage('');
-    setShowHistory(false);
   };
 
   const deleteConversation = async (convId: string) => {

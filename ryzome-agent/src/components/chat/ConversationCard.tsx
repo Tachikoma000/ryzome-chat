@@ -1,7 +1,6 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { MessageCircle, Clock, Trash2 } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { useTheme } from '@/contexts/ThemeContext';
 
 interface ConversationCardProps {
@@ -15,7 +14,6 @@ interface ConversationCardProps {
 }
 
 export function ConversationCard({ 
-  id, 
   title, 
   preview, 
   messageCount, 
