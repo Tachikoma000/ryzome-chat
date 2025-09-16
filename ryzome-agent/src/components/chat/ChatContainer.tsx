@@ -278,9 +278,18 @@ export function ChatContainer() {
                         }}
                       />
                       <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                        <div className="w-8 h-8 rounded-full bg-[#9AE064] flex items-center justify-center">
+                        <button
+                          onClick={(e) => {
+                            const input = e.currentTarget.parentElement?.previousElementSibling as HTMLInputElement;
+                            if (input?.value.trim()) {
+                              handleSendMessage(input.value.trim());
+                              input.value = '';
+                            }
+                          }}
+                          className="w-8 h-8 rounded-full bg-[#9AE064] hover:bg-[#8BC653] transition-colors duration-200 flex items-center justify-center"
+                        >
                           <Send className="w-4 h-4 text-black" />
-                        </div>
+                        </button>
                       </div>
                     </div>
                     

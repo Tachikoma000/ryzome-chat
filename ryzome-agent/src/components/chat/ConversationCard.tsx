@@ -23,18 +23,28 @@ export function ConversationCard({
 }: ConversationCardProps) {
   const { theme } = useTheme();
   const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    const now = new Date();
-    const diffInHours = (now.getTime() - date.getTime()) / (1000 * 60 * 60);
-    
-    if (diffInHours < 1) {
-      return 'Just now';
-    } else if (diffInHours < 24) {
-      return `${Math.floor(diffInHours)}h ago`;
-    } else if (diffInHours < 168) { // 7 days
-      return `${Math.floor(diffInHours / 24)}d ago`;
-    } else {
-      return date.toLocaleDateString();
+    try {
+      const date = new Date(dateString);
+      
+      // Check if date is valid
+      if (isNaN(date.getTime())) {
+        return 'Recently';
+      }
+      
+      const now = new Date();
+      const diffInHours = (now.getTime() - date.getTime()) / (1000 * 60 * 60);
+      
+      if (diffInHours < 1) {
+        return 'Just now';
+      } else if (diffInHours < 24) {
+        return `${Math.floor(diffInHours)}h ago`;
+      } else if (diffInHours < 168) { // 7 days
+        return `${Math.floor(diffInHours / 24)}d ago`;
+      } else {
+        return date.toLocaleDateString();
+      }
+    } catch (error) {
+      return 'Recently';
     }
   };
 
