@@ -8,18 +8,26 @@ export function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <Button
-      variant="ghost"
-      size="sm"
+    <button
       onClick={toggleTheme}
-      className="w-9 h-9 p-0 text-gray-400 hover:text-white hover:bg-gray-800/50 transition-colors duration-200"
+      className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#9AE064] focus:ring-offset-2 ${
+        theme === 'dark' 
+          ? 'bg-gray-700 focus:ring-offset-black' 
+          : 'bg-gray-300 focus:ring-offset-white'
+      }`}
     >
-      {theme === 'dark' ? (
-        <Sun className="w-4 h-4" />
-      ) : (
-        <Moon className="w-4 h-4" />
-      )}
       <span className="sr-only">Toggle theme</span>
-    </Button>
+      <span
+        className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform duration-200 ${
+          theme === 'dark' ? 'translate-x-6' : 'translate-x-1'
+        }`}
+      >
+        {theme === 'dark' ? (
+          <Moon className="w-3 h-3 text-gray-700 m-0.5" />
+        ) : (
+          <Sun className="w-3 h-3 text-yellow-500 m-0.5" />
+        )}
+      </span>
+    </button>
   );
 }

@@ -8,12 +8,14 @@ interface MessageInputProps {
   onSend: (message: string) => void;
   disabled?: boolean;
   placeholder?: string;
+  showSuggestions?: boolean;
 }
 
 export function MessageInput({ 
   onSend, 
   disabled = false, 
-  placeholder = "Ask me anything about Ryzome..." 
+  placeholder = "Ask me anything about Ryzome...",
+  showSuggestions = false
 }: MessageInputProps) {
   const { theme } = useTheme();
   const [message, setMessage] = useState('');
@@ -36,7 +38,7 @@ export function MessageInput({
     <div className={`border-t ${theme === 'dark' ? 'border-gray-800 bg-black/95' : 'border-gray-200 bg-white/95'} backdrop-blur supports-[backdrop-filter]:${theme === 'dark' ? 'bg-black/80' : 'bg-white/80'} shadow-lg`}>
       <div className="container max-w-4xl mx-auto p-4">
         {/* Input Field with Integrated Send Button */}
-        <div className="max-w-2xl mx-auto mb-4">
+        <div className="mb-4">
           <div className="relative">
             <Input
               value={message}
@@ -67,61 +69,63 @@ export function MessageInput({
           </div>
         </div>
         
-        {/* Quick action buttons - Centered like landing page */}
-        <div className="flex flex-wrap justify-center gap-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => onSend("What is Ryzome?")}
-            disabled={disabled}
-            className={`text-xs rounded-full px-4 py-2 h-auto backdrop-blur-sm transition-colors duration-200 ${
-              theme === 'dark'
-                ? 'border-gray-700 bg-black/50 hover:bg-gray-800/50 text-gray-300 hover:text-white'
-                : 'border-gray-300 bg-white/80 hover:bg-gray-50 text-gray-700 hover:text-gray-900'
-            }`}
-          >
-            What is Ryzome?
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => onSend("How do I get started?")}
-            disabled={disabled}
-            className={`text-xs rounded-full px-4 py-2 h-auto backdrop-blur-sm transition-colors duration-200 ${
-              theme === 'dark'
-                ? 'border-gray-700 bg-black/50 hover:bg-gray-800/50 text-gray-300 hover:text-white'
-                : 'border-gray-300 bg-white/80 hover:bg-gray-50 text-gray-700 hover:text-gray-900'
-            }`}
-          >
-            Getting started
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => onSend("How do I add images?")}
-            disabled={disabled}
-            className={`text-xs rounded-full px-4 py-2 h-auto backdrop-blur-sm transition-colors duration-200 ${
-              theme === 'dark'
-                ? 'border-gray-700 bg-black/50 hover:bg-gray-800/50 text-gray-300 hover:text-white'
-                : 'border-gray-300 bg-white/80 hover:bg-gray-50 text-gray-700 hover:text-gray-900'
-            }`}
-          >
-            Adding images
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => onSend("What are keyboard shortcuts?")}
-            disabled={disabled}
-            className={`text-xs rounded-full px-4 py-2 h-auto backdrop-blur-sm transition-colors duration-200 ${
-              theme === 'dark'
-                ? 'border-gray-700 bg-black/50 hover:bg-gray-800/50 text-gray-300 hover:text-white'
-                : 'border-gray-300 bg-white/80 hover:bg-gray-50 text-gray-700 hover:text-gray-900'
-            }`}
-          >
-            Keyboard shortcuts
-          </Button>
-        </div>
+        {/* Quick action buttons - Only show when showSuggestions is true */}
+        {showSuggestions && (
+          <div className="flex flex-wrap justify-center gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => onSend("What is Ryzome?")}
+              disabled={disabled}
+              className={`text-xs rounded-full px-4 py-2 h-auto backdrop-blur-sm transition-colors duration-200 ${
+                theme === 'dark'
+                  ? 'border-gray-700 bg-black/50 hover:bg-gray-800/50 text-gray-300 hover:text-white'
+                  : 'border-gray-300 bg-white/80 hover:bg-gray-50 text-gray-700 hover:text-gray-900'
+              }`}
+            >
+              What is Ryzome?
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => onSend("How do I get started?")}
+              disabled={disabled}
+              className={`text-xs rounded-full px-4 py-2 h-auto backdrop-blur-sm transition-colors duration-200 ${
+                theme === 'dark'
+                  ? 'border-gray-700 bg-black/50 hover:bg-gray-800/50 text-gray-300 hover:text-white'
+                  : 'border-gray-300 bg-white/80 hover:bg-gray-50 text-gray-700 hover:text-gray-900'
+              }`}
+            >
+              Getting started
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => onSend("How do I add images?")}
+              disabled={disabled}
+              className={`text-xs rounded-full px-4 py-2 h-auto backdrop-blur-sm transition-colors duration-200 ${
+                theme === 'dark'
+                  ? 'border-gray-700 bg-black/50 hover:bg-gray-800/50 text-gray-300 hover:text-white'
+                  : 'border-gray-300 bg-white/80 hover:bg-gray-50 text-gray-700 hover:text-gray-900'
+              }`}
+            >
+              Adding images
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => onSend("What are keyboard shortcuts?")}
+              disabled={disabled}
+              className={`text-xs rounded-full px-4 py-2 h-auto backdrop-blur-sm transition-colors duration-200 ${
+                theme === 'dark'
+                  ? 'border-gray-700 bg-black/50 hover:bg-gray-800/50 text-gray-300 hover:text-white'
+                  : 'border-gray-300 bg-white/80 hover:bg-gray-50 text-gray-700 hover:text-gray-900'
+              }`}
+            >
+              Keyboard shortcuts
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );

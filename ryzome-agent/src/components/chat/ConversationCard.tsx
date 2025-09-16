@@ -64,35 +64,30 @@ export function ConversationCard({
       }`}
       onClick={onClick}
     >
-      <CardContent className="px-4 py-2">
+      <CardContent className="px-4 py-3">
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0">
             {/* Conversation Title */}
-            <h3 className={`text-sm font-medium truncate mb-1 ${
+            <h3 className={`text-sm font-medium mb-2 ${
               theme === 'dark' ? 'text-white' : 'text-gray-900'
             }`}>
-              {title}
+              {title.length > 25 ? title.substring(0, 25) + '...' : title}
             </h3>
             
             {/* Preview Text */}
-            <p className={`text-xs line-clamp-1 mb-1 ${
+            <p className={`text-xs mb-2 leading-relaxed ${
               theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
             }`}>
-              {preview}
+              {preview.length > 40 ? preview.substring(0, 40) + '...' : preview}
             </p>
             
             {/* Metadata */}
-            <div className={`flex items-center gap-3 text-xs ${
+            <div className={`flex items-center gap-2 text-xs ${
               theme === 'dark' ? 'text-gray-500' : 'text-gray-500'
             }`}>
-              <div className="flex items-center gap-1">
-                <MessageCircle className="w-3 h-3" />
-                <span>{messageCount} messages</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <Clock className="w-3 h-3" />
-                <span>{formatDate(updatedAt)}</span>
-              </div>
+              <span>{messageCount} msgs</span>
+              <span>•</span>
+              <span>{formatDate(updatedAt)}</span>
             </div>
           </div>
           
