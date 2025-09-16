@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { ConversationCard } from './ConversationCard';
 import { useTheme } from '@/contexts/ThemeContext';
-import { Plus, MessageCircle, Menu, X } from 'lucide-react';
+import { Plus, MessageCircle, Menu, ChevronLeft } from 'lucide-react';
 
 interface ConversationSummary {
   id: string;
@@ -59,7 +59,7 @@ export function Sidebar({
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200'
                 }`}
               >
-                <X className="w-4 h-4" />
+                <ChevronLeft className="w-4 h-4" />
               </Button>
             </div>
             

@@ -39,7 +39,7 @@ export function ChatContainer() {
   const [conversations, setConversations] = useState<ConversationSummary[]>([]);
   const [showHistory, setShowHistory] = useState(true);
   const [loadingConversations, setLoadingConversations] = useState(false);
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
   // Load conversation history on component mount
