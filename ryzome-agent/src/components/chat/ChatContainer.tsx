@@ -249,13 +249,16 @@ export function ChatContainer() {
               <div className="space-y-6">
                 {/* Welcome Header */}
                 <div className="text-center mb-12">
-                  <div className="flex justify-center mb-2">
-                    <div className="w-80 h-80">
-                      <DotLottieReact
-                        src="https://lottie.host/dfa54129-edbc-4f87-b4d6-4f8a044aed66/6nfNBiG88d.lottie"
-                        loop
-                        autoplay
-                        className="w-full h-full"
+                  <div className="flex justify-center mb-6">
+                    <div className={`w-24 h-24 rounded-full flex items-center justify-center shadow-lg ${
+                      theme === 'dark' ? 'bg-black' : 'bg-white'
+                    }`}>
+                      <Image
+                        src="/images/icons/Subtract.png"
+                        alt="Ryzome"
+                        width={64}
+                        height={64}
+                        className="object-contain"
                       />
                     </div>
                   </div>

@@ -7,6 +7,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import 'highlight.js/styles/github-dark.css';
 import { useTheme } from '@/contexts/ThemeContext';
+import Image from 'next/image';
 
 interface MessageBubbleProps {
   message: string;
@@ -32,8 +33,14 @@ export function MessageBubble({ message, isUser, timestamp, isStreaming = false 
     )}>
       {/* Avatar - Only show for assistant */}
       {!isUser && (
-        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#9AE064] flex items-center justify-center shadow-sm">
-          <Bot className="w-4 h-4 text-black" />
+        <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center shadow-sm overflow-hidden">
+          <Image
+            src="/images/icons/Subtract.png"
+            alt="Ryzome Agent"
+            width={32}
+            height={32}
+            className="object-contain w-full h-full"
+          />
         </div>
       )}
 
